@@ -33,7 +33,7 @@ const imagesSchema = new Schema({
   xs: { type: String },
   sm: { type: String },
   md: { type: String },
-  lg: { type: String },
+  lg: { type: String }
 });
 
 const superheroSchema = new Schema({
@@ -46,7 +46,6 @@ const superheroSchema = new Schema({
     base: { type: String },
   },
   connections: {
-    groupAffiliation: { type: String },
     relatives: { type: String },
   },
   images: imagesSchema,
@@ -58,6 +57,7 @@ const superheroSchema = new Schema({
     }
   }
 });
+;
 
 const Superhero = mongoose.model('Superhero', superheroSchema);
 

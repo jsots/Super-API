@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 
 const MONGODB_URI =
-  process.env.PROD_MONGODB || "mongodb://127.0.0.1:27017/super-hero-api";
+  process.env.PROD_MONGODB || "mongodb://127.0.0.1:27017/Superheroes";
 
 // This is for Model.findByIdAndUpdate method, specifically so that {new: true} is the default
 mongoose.set("returnOriginal", false);
@@ -22,3 +22,5 @@ mongoose.connection.on("error", (error) =>
 );
 
 export default mongoose.connection;
+
+

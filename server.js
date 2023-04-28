@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/superhero', {
+mongoose.connect('mongodb://localhost:27017/Superheroes', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
