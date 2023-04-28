@@ -1,6 +1,7 @@
 import express from 'express';
 import Superhero from '../models/Superhero.js';
 
+
 const router = express.Router();
 
 // GET all superheroes
@@ -14,6 +15,20 @@ export async function getSuperheros(req, res) {
   }
 }
 
+// GET superhero by name
+export async function getSuperheroByName(req, res) {
+  try {
+    const superhero = await Superhero.findOne({ name: req.params.name });
+    if (!superhero) {
+      res.status(404).json({ message: 'Superhero not found' });
+    } else {
+      res.json(superhero);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
 
 // GET superhero by ID
 export async function getSuperhero(req, res) {
@@ -70,6 +85,28 @@ export async function deleteSuperhero(req, res) {
     } else {
       res.json({ message: 'Superhero deleted successfully' });
     }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+// GET superheroes by alignment
+export async function getByAlignment(req, res) {
+  try {
+    const superheroes = await Superhero.find({ alignment: req.params.align });
+    res.json(superheroes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+// GET superheroes by publisher
+export async function getByPublisher(req, res) {
+  try {
+    const superheroes = await Superhero.find({ publisher: req.params.pub });
+    res.json(superheroes);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Server error' });

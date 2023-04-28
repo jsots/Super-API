@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getSuperheros, getSuperhero, createSuperhero, updateSuperhero, deleteSuperhero, getByAlignment, getByPublisher } from "../controllers/superheros.js";
+import { getSuperheros, getSuperheroByName, createSuperhero, updateSuperhero, deleteSuperhero, getByAlignment, getByPublisher, getSuperhero } from "../controllers/superheros.js";
 
 
 const router = Router();
@@ -10,7 +10,7 @@ router.put("/:id", updateSuperhero);
 router.delete("/:id", deleteSuperhero);
 router.get("/alignment/:align", getByAlignment);
 router.get("/publisher/:pub", getByPublisher);
-router.get("/name/:name", getSuperhero);
-
+router.get('/name/:name', getSuperheroByName);
+router.get("/", getSuperhero);
 
 export default router;
