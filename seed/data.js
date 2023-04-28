@@ -1,4 +1,6 @@
 import fetch from 'node-fetch';
+import {promises} from 'fs';
+
 
 async function fetchSuperheroData() {
   try {

@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
-import fetchSuperheroData from './data.js';
+import connection from './connection.js';
+// import fetchSuperheroData from './data.js';
 import Superhero from '../models/Superhero.js';
-import from './superhero.json';
+import data from `./superhero.json` assert {type: 'json'};
 
 async function seedDatabase() {
   try {
