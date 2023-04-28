@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const powerstatsSchema = new Schema({
@@ -50,6 +51,12 @@ const superheroSchema = new Schema({
   },
   images: imagesSchema,
   slug: { type: String },
+  isVillain: {
+    type: Boolean,
+    default: function() {
+      return this.biography.alignment === 'bad';
+    }
+  }
 });
 
 const Superhero = mongoose.model('Superhero', superheroSchema);

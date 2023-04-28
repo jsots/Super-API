@@ -92,9 +92,11 @@ export async function deleteSuperhero(req, res) {
 }
 
 // GET superheroes by alignment
-export async function getByAlignment(req, res) {
+router.get("/alliance/:alliance", getByAlliance);
+export async function getByAlliance(req, res) {
   try {
-    const superheroes = await Superhero.find({ alignment: req.params.align });
+    const isVillain = req.params.alliance === "villains";
+    const superheroes = await Superhero.find({ "biography.alignment": isVillain ? "bad" : "good" });
     res.json(superheroes);
   } catch (err) {
     console.log(err);

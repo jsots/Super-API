@@ -7,6 +7,7 @@ import connection from '../connection/connection.js';
 connection.once('open', async () => {
   try {
     const superheroInstances = superheroesData.map(superheroData => {
+      const isVillain = superheroData.biography.alignment === "bad";
       const superhero = new Superhero({
         name: superheroData.name,
         slug: superheroData.slug,
@@ -16,6 +17,7 @@ connection.once('open', async () => {
         work: superheroData.work,
         connections: superheroData.connections,
         images: superheroData.images,
+        isVillain: isVillain // new field added to the object
       });
 
       return superhero;
