@@ -91,12 +91,14 @@ export async function deleteSuperhero(req, res) {
   }
 }
 
-// GET superheroes by alignment
-router.get("/alliance/:alliance", getByAlignment);
+// GET superheroes by alignment good bad or neutral
 export async function getByAlignment(req, res) {
   try {
-    const isVillain = req.params.alliance === "villains";
-    const superheroes = await Superhero.find({ "biography.alignment": isVillain ? "bad" : "good" });
+    const alignment = req.params.align;
+    if (alignment !== "good" && alignment !== "bad" && alignment !== "neutral") {
+      return res.status(400).json({ message: "Invalid alignment" });
+    }
+    const superheroes = await Superhero.find({ "biography.alignment": alignment });
     res.json(superheroes);
   } catch (err) {
     console.log(err);
@@ -107,25 +109,12 @@ export async function getByAlignment(req, res) {
 // GET superheroes by publisher
 export async function getByPublisher(req, res) {
   try {
-    const superheroes = await Superhero.find({ publisher: req.params.pub });
+    const superheroes = await Superhero.find({ "biography.publisher": req.params.pub });
     res.json(superheroes);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Server error' });
   }
 }
-
-//Get by Villian
-router.get("/villains", async (req, res) => {
-  try {
-    const villains = await Superhero.find({ "biography.alignment": "bad" });
-    res.json(villains);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
-
 
 export default router;

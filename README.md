@@ -1,6 +1,6 @@
 # Superhero API
 
-*This is a RESTful API that provides data on superheroes, using Node.js, Express.js, and MongoDB.*
+*This is a RESTful API that provides data on superheroes, using Node.js, Express.js, and MongoDB*
 
 ## Setup:
 * Install Node.js and MongoDB.
@@ -12,48 +12,34 @@
 Usage
 * To start the server, run npm start or npm run dev
 
-## Routes:
-### The API has the following routes:
-
-### GET /superheroes
-Returns a list of all superheroes.
-
-### GET /superheroes/:id
-Returns a superhero with the specified ID.
-
-### GET /superheroes/name/:name
-Returns a superhero with the specified name.
-
-### POST /superheroes
-Creates a new superhero.
-
-### PUT /superheroes/:id
-Updates a superhero with the specified ID.
-
-### DELETE /superheroes/:id
-Deletes a superhero with the specified ID.
-
-### GET /superheroes/alliance/:alliance
-Returns a list of superheroes with the specified alignment (good or bad).
-
-### GET /superheroes/publisher/:publisher
-Returns a list of superheroes from the specified publisher.
-
-### GET /superheroes/villians
-Returns a list of villians 
+| Route                 | HTTP Method | Description                                                     |
+|-----------------------|-------------|-----------------------------------------------------------------|
+| /                     | GET         | Returns a list of all superheroes                               |
+| /:id                  | GET         | Returns a superhero with the specified ID                       |
+| /name/:name           | GET         | Returns a superhero with the specified name                     |
+| /                     | POST        | Creates a new superhero                                          |
+| /:id                  | PUT         | Updates a superhero with the specified ID                       |
+| /:id                  | DELETE      | Deletes a superhero with the specified ID                       |
+| /alliance/:alliance   | GET         | Returns a list of superheroes with the specified alliance       |
+| /alliance/good        | GET         | Returns a list of superheroes with the "good" alignment          |
+| /alliance/bad         | GET         | Returns a list of superheroes with the "bad" alignment           |
+| /alliance/neutral     | GET         | Returns a list of superheroes with the "neutral" alignment       |
+| /publisher/:publisher | GET         | Returns a list of superheroes with the specified publisher      |
+| /publisher/Marvel     | GET         | Returns a list of superheroes with the publisher "Marvel Comics" |
+| /publisher/DC         | GET         | Returns a list of superheroes with the publisher "DC Comics"     |
 
 
 ## Models
-The Superhero model is defined in models/Superhero.js, using Mongoose.
+* The Superhero model is defined in models/Superhero.js, using Mongoose.
 
 ## Controllers
-The API logic is defined in the controllers/superheroes.js file, using the Express.js Router.
+* The API logic is defined in the controllers/superheroes.js file, using the Express.js Router.
 
 ## Dependencies
-express
-mongoose
-cors
-Contributing
-Contributions are welcome! 
+* express
+* mongoose
+* cors
+* Contributing
+* Contributions are welcome! 
 
 Please submit a pull request with your changes.
