@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import fetchSuperheroData from './data.js';
 import Superhero from '../models/Superhero.js';
+import from './superhero.json';
 
 async function seedDatabase() {
   try {
@@ -10,7 +11,8 @@ async function seedDatabase() {
     });
     console.log('Connected to MongoDB');
 
-    const superheroData = await fetchSuperheroData();
+    // const superheroData = await fetchSuperheroData();
+    
     const result = await Superhero.insertMany(superheroData);
     console.log(`${result.length} documents inserted`);
 
