@@ -1,27 +1,32 @@
 import mongoose from 'mongoose';
-import connection from './connection.js';
-// import fetchSuperheroData from './data.js';
 import Superhero from '../models/Superhero.js';
-import data from `./superhero.json` assert {type: 'json'};
+import superheroesData from "./superheroes.json" assert { type: 'json' }
+import connection from '../connection/connection.js';
 
-async function seedDatabase() {
+
+connection.once('open', async () => {
   try {
-    await mongoose.connect('mongodb://localhost/superhero-app', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const superheroInstances = superheroesData.map(superheroData => {
+      const superhero = new Superhero({
+        name: superheroData.name,
+        slug: superheroData.slug,
+        powerstats: superheroData.powerstats,
+        appearance: superheroData.appearance,
+        biography: superheroData.biography,
+        work: superheroData.work,
+        connections: superheroData.connections,
+        images: superheroData.images,
+      });
+
+      return superhero;
     });
-    console.log('Connected to MongoDB');
 
-    // const superheroData = await fetchSuperheroData();
-    
-    const result = await Superhero.insertMany(superheroData);
-    console.log(`${result.length} documents inserted`);
-
-    await mongoose.connection.close();
-    console.log('Disconnected from MongoDB');
+    await Superhero.deleteMany();
+    await Superhero.create(superheroInstances);
+    console.log('Superheroes saved successfully!');
   } catch (error) {
     console.error(error);
+  } finally {
+    mongoose.disconnect();
   }
-}
-
-seedDatabase();
+});

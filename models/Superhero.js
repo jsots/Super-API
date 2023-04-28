@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const superheroSchema = new Schema({
-  // id: { type: Number }, not object id
   name: { type: String },
   slug: { type: String },
   powerstats: {
