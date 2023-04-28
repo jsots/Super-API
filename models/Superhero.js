@@ -48,16 +48,9 @@ const superheroSchema = new Schema({
   connections: {
     relatives: { type: String },
   },
-  images: imagesSchema,
-  slug: { type: String },
-  isVillain: {
-    type: Boolean,
-    default: function() {
-      return this.biography.alignment === 'bad';
-    }
-  }
-});
-;
+  images: imagesSchema
+})
+
 
 const Superhero = mongoose.model('Superhero', superheroSchema);
 

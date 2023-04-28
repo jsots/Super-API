@@ -115,4 +115,17 @@ export async function getByPublisher(req, res) {
   }
 }
 
+//Get by Villian
+router.get("/villains", async (req, res) => {
+  try {
+    const villains = await Superhero.find({ "biography.alignment": "bad" });
+    res.json(villains);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
+
 export default router;

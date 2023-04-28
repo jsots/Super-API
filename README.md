@@ -1,51 +1,59 @@
 # Superhero API
-This is a RESTful API that provides data on superheroes, using Node.js, Express.js, and MongoDB.
 
-Setup
-Install Node.js and MongoDB.
-Clone the repository and navigate to the project directory.
-Run npm install to install the required dependencies.
-Start the MongoDB server.
-Seed the database with superhero data by running the seed.js script with npm run seed.
+*This is a RESTful API that provides data on superheroes, using Node.js, Express.js, and MongoDB.*
+
+## Setup:
+* Install Node.js and MongoDB.
+* Clone the repository and navigate to the project directory.
+* Run npm install to install the required dependencies.
+* Start the MongoDB server.
+* Seed the database with superhero data by running the seed.js script with npm run seed.
+
 Usage
-To start the server, run npm start.
+* To start the server, run npm start or npm run dev
 
-Routes
-The API has the following routes:
+## Routes:
+### The API has the following routes:
 
-GET /superheroes
+### GET /superheroes
 Returns a list of all superheroes.
 
-GET /superheroes/:id
+### GET /superheroes/:id
 Returns a superhero with the specified ID.
 
-GET /superheroes/name/:name
+### GET /superheroes/name/:name
 Returns a superhero with the specified name.
 
-POST /superheroes
+### POST /superheroes
 Creates a new superhero.
 
-PUT /superheroes/:id
+### PUT /superheroes/:id
 Updates a superhero with the specified ID.
 
-DELETE /superheroes/:id
+### DELETE /superheroes/:id
 Deletes a superhero with the specified ID.
 
-GET /superheroes/alliance/:alliance
+### GET /superheroes/alliance/:alliance
 Returns a list of superheroes with the specified alignment (good or bad).
 
-GET /superheroes/publisher/:publisher
+### GET /superheroes/publisher/:publisher
 Returns a list of superheroes from the specified publisher.
 
-Models
+### GET /superheroes/villians
+Returns a list of villians 
+
+
+## Models
 The Superhero model is defined in models/Superhero.js, using Mongoose.
 
-Controllers
+## Controllers
 The API logic is defined in the controllers/superheroes.js file, using the Express.js Router.
 
-Dependencies
+## Dependencies
 express
 mongoose
 cors
 Contributing
-Contributions are welcome! Please submit a pull request with your changes.
+Contributions are welcome! 
+
+Please submit a pull request with your changes.
