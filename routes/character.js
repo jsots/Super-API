@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getSuperheros, getSuperheroByName, createSuperhero, updateSuperhero, deleteSuperhero, getByAlignment, getByPublisher, getSuperhero } from "../controllers/superheroes.js";
+import { getSuperheroes, getSuperheroByName, createSuperhero, updateSuperhero, deleteSuperhero, getByAlignment, getByPublisher, getSuperhero } from "../controllers/superheroes.js";
 
 
 const router = Router();
 
-router.get("/", getSuperheros);
+router.get("/", getSuperheroes);
 router.get("/:id", getSuperhero);
 router.post("/", createSuperhero);
 router.put("/:id", updateSuperhero);

@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import superheroRoutes from './routes/superhero.js';
+import characterRoutes from './routes/character.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,22 +9,22 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/Superheroes', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect('mongodb://localhost:27017/Characters', {
+ useNewUrlParser: true,
+ useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Database connected!');
+ console.log('Database connected!');
 });
 
 
-app.use('/', superheroRoutes);
+app.use('/', characterRoutes);
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+ console.log(`Server listening on port ${port}`);
 });
 
