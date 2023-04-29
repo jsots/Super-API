@@ -1,16 +1,18 @@
+
+
 import { Router } from "express";
-import { getSuperheroes, getSuperheroByName, createSuperhero, updateSuperhero, deleteSuperhero, getByAlignment, getByPublisher, getSuperhero } from "../controllers/superheroes.js";
+import { getCharacters, getCharacterByName, createCharacter, updateCharacter, deleteCharacter, getByAlignment, getByPublisher, getCharacter } from "../controllers/characters.js";
 
 
 const router = Router();
 
-router.get("/", getSuperheroes);
-router.get("/:id", getSuperhero);
-router.post("/", createSuperhero);
-router.put("/:id", updateSuperhero);
-router.delete("/:id", deleteSuperhero);
+router.get("/", getCharacters);
+router.get("/:id", getCharacter);
+router.post("/", createCharacter);
+router.put("/:id", updateCharacter);
+router.delete("/:id", deleteCharacter);
 router.get("/alignment/:align", getByAlignment);
 router.get("/publisher/:pub", getByPublisher);
-router.get('/name/:name', getSuperheroByName);
+router.get('/name/:name', getCharacterByName);
 
 export default router;
