@@ -48,19 +48,29 @@ const imagesSchema = new Schema(
   { _id: false }
 );
 
+const workSchema = new Schema(
+  {
+    occupation: { type: String },
+    base: { type: String },
+  },
+  { _id: false }
+);
+
+const connectionSchema = new Schema(
+  {
+    relatives: { type: String },
+  },
+  { _id: false }
+);
+
 const characterSchema = new Schema({
   name: { type: String },
   powerstats: powerstatsSchema,
   appearance: appearanceSchema,
   biography: biographySchema,
   images: imagesSchema,
-  work: [{
-    occupation: { type: String },
-    base: { type: String },
-}],
-  connections: [{
-    relatives: { type: String },
-  }]
+  work: workSchema,
+  connections: connectionSchema
 });
 
 const Character = mongoose.model("Character", characterSchema);

@@ -35,6 +35,7 @@ export async function getCharacterByName(req, res) {
 export async function getCharacter(req, res) {
  try {
    const character = await Character.findById(req.params.id);
+   console.log(req.params.id);
    if (!character) {
      res.status(404).json({ message: 'Character not found' });
    } else {
