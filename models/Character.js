@@ -63,8 +63,6 @@ const characterSchema = new Schema({
   }]
 });
 
-
-
 const Character = mongoose.model("Character", characterSchema);
 
 export default Character;
