@@ -118,4 +118,17 @@ export async function getByPublisher(req, res) {
  }
 }
 
+// //get by powerstat 
+// export async function getCharactersByPowerStat(req, res) {
+//   const powerstat = req.query.powerstat;
+//   try {
+//     const characters = await Character.find({ 'powerstats.power': powerstat }).populate('powerstats');
+//     res.json(characters);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// }
+
+
 export default router;
