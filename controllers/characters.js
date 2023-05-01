@@ -35,6 +35,7 @@ export async function getCharacterByName(req, res) {
 export async function getCharacter(req, res) {
  try {
    const character = await Character.findById(req.params.id);
+   console.log(req.params.id);
    if (!character) {
      res.status(404).json({ message: 'Character not found' });
    } else {
@@ -117,5 +118,18 @@ export async function getByPublisher(req, res) {
    res.status(500).json({ message: 'Server error' });
  }
 }
+
+// //get by powerstat 
+// export async function getCharactersByPowerStat(req, res) {
+//   const powerstat = req.query.powerstat;
+//   try {
+//     const characters = await Character.find({ 'powerstats.power': powerstat }).populate('powerstats');
+//     res.json(characters);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// }
+
 
 export default router;
