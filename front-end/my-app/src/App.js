@@ -1,16 +1,17 @@
-import Characters from './Characters';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Superhero Characters</h1>
-      </header>
-      <main>
-        <Characters />
-      </main>
-    </div>
-  );
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-export default App;
+reportWebVitals();
