@@ -5,12 +5,12 @@ import { getCharacters, getCharacterByName, createCharacter, updateCharacter, de
 const router = Router();
 
 router.get("/characters", getCharacters);
-router.get("/character/:id", getCharacter);
-router.post("/character", createCharacter);
-router.put("/character/:id", updateCharacter);
-router.delete("/character/:id", deleteCharacter);
-router.get("/character/alignment/:align", getByAlignment);
-router.get("/character/publisher/:pub", getByPublisher);
-router.get('/character/name/:name', getCharacterByName);
+router.get("/characters/:id", getCharacter);
+router.post("/characters", createCharacter);
+router.put("/characters/:id", updateCharacter);
+router.delete("/characters/:id", deleteCharacter);
+router.get("/characters/alignment/:align", getByAlignment);
+router.get("/characters/publisher/:pub", getByPublisher);
+router.get('/characters/name/:name', getCharacterByName);
 // router.get('/powerstat', getCharactersByPowerStat);
 export default router;
