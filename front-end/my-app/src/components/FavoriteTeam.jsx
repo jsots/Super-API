@@ -2,8 +2,16 @@ import React from "react";
 
 function FavoriteTeam(props) {
   const { favoriteTeam, setFavoriteTeam } = props;
- 
- 
+  
+  const isFavorite = (character) => {
+    if (favoriteTeam && favoriteTeam.length > 0) {
+      return favoriteTeam.find((c) => c._id === character._id);
+    } else {
+      return false;
+    }
+  };
+  
+
   const handleRemoveCharacter = (character) => {
     setFavoriteTeam(favoriteTeam.filter((c) => c._id !== character._id));
   };

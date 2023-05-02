@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Signup from './SignUp';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -22,8 +23,7 @@ function Login() {
     }
   };
 
-  const handleSignup = async (event) => {
-    event.preventDefault();
+  const handleSignup = async ({ username, email, password }) => {
     try {
       const response = await axios.post("http://localhost:3000/api/sign-up", {
         username,
@@ -81,33 +81,12 @@ function Login() {
             </label>
             <button type="submit">Login</button>
           </form>
-          <form onSubmit={handleSignup}>
-            <label>
-              Username:
-              <input
-                type="text"
-                value={username}
-                onChange={handleUsernameChange}
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </label>
-            <label>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </label>
-            <button type="submit">Sign Up</button>
-          </form>
+          <Signup
+            setUsername={setUsername}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            handleSignup={handleSignup}
+          />
         </div>
       )}
     </div>
