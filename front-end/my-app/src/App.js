@@ -3,10 +3,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import Characters from "../src/components/Characters";
 import FavoriteTeam from "../src/components/FavoriteTeam";
 import Search from "../src/components/Search";
+import Header from "./components/Header";
 import axios from "axios";
 import "./App.css";
-import Header from "./components/Header";
-import MyNav from "./components/MyNav";
 
 function App() {
  const [characters, setCharacters] = useState([]);
