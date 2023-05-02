@@ -1,4 +1,4 @@
-
+import React from "react";
 
 function FavoriteTeam(props) {
   const { favoriteTeam, setFavoriteTeam } = props;
