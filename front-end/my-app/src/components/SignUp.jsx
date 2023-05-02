@@ -1,53 +1,52 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-function Signup(props) {
+function Signup() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
-    props.setUsername(event.target.value);
   };
 
   const handleEmailChange = (event) => {
-    props.setEmail(event.target.value);
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
-    props.setPassword(event.target.value);
+    setPassword(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
-    await props.handleSignup({ username, email: props.email, password: props.password });
+    try {
+      const response = await axios.post('http://localhost:3000/sign-up', {
+        username,
+        email,
+        password,
+      });
+      // handle success, such as redirecting to a dashboard or displaying a success message
+    } catch (error) {
+      // handle error, such as displaying an error message
+    }
   };
 
   return (
     <div>
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignup}>
         <label>
           Username:
-          <input
-            type="text"
-            value={username}
-            onChange={handleUsernameChange}
-          />
+          <input type="text" value={username} onChange={handleUsernameChange} />
         </label>
         <label>
           Email:
-          <input
-            type="email"
-            value={props.email}
-            onChange={handleEmailChange}
-          />
+          <input type="email" value={email} onChange={handleEmailChange} />
         </label>
         <label>
           Password:
-          <input
-            type="password"
-            value={props.password}
-            onChange={handlePasswordChange}
-          />
+          <input type="password" value={password} onChange={handlePasswordChange} />
         </label>
         <button type="submit">Sign Up</button>
       </form>

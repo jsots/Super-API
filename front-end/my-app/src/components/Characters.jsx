@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useRef } from "react";
 
-function Characters({ characters, onSelectCharacter, onAddToFavorites, favoriteTeam = [] }) {
+function Characters({ characters, onSelectCharacter, onAddToFavorites, favoriteTeam }) {
   const isFavorite = (character) => {
-    return favoriteTeam.find((c) => c._id === character._id);
+    return favoriteTeam && favoriteTeam.find((c) => c._id === character._id);
   }
+  const charactersRef = useRef(null);
+
+  const handleAddToTeam = (character) => {
+    onSelectCharacter(character);
+    charactersRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleAddToFavorites = (character) => {
+    onAddToFavorites(character);
+  };
 
   return (
     <div>
-      <h2>Characters</h2>
       {characters && characters.length > 0 ? (
         characters.map((character) => (
           <div className="character-card" key={character._id}>
@@ -26,13 +35,14 @@ function Characters({ characters, onSelectCharacter, onAddToFavorites, favoriteT
               <li>Power: {character.powerstats.power}</li>
               <li>Combat: {character.powerstats.combat}</li>
             </ul>
-            <button onClick={() => onSelectCharacter(character)}>Add to team</button>
-            <button onClick={() => onAddToFavorites(character)} disabled={isFavorite(character)}>Favorite</button>
+            <button onClick={() => handleAddToTeam(character)}>Add to team</button>
+            <button onClick={() => handleAddToFavorites(character)} disabled={isFavorite(character)}>Favorite</button>
           </div>
         ))
       ) : (
         <div>No characters to display</div>
       )}
+      <div ref={charactersRef}></div>
     </div>
   );
 }

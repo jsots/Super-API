@@ -1,24 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 
 function FavoriteTeam(props) {
   const { favoriteTeam, setFavoriteTeam } = props;
-  
-  const isFavorite = (character) => {
-    if (favoriteTeam && favoriteTeam.length > 0) {
-      return favoriteTeam.find((c) => c._id === character._id);
-    } else {
-      return false;
-    }
-  };
-  
+
+  const favoriteTeamRef = useRef(null);
 
   const handleRemoveCharacter = (character) => {
     setFavoriteTeam(favoriteTeam.filter((c) => c._id !== character._id));
   };
- 
- 
+
   return (
-    <div>
+    <div ref={favoriteTeamRef}>
       <h2>Favorite Team</h2>
       {favoriteTeam && favoriteTeam.length > 0 ? (
         favoriteTeam.map((character) => (
@@ -33,8 +25,6 @@ function FavoriteTeam(props) {
       )}
     </div>
   );
- }
- 
- 
- export default FavoriteTeam;
- 
+}
+
+export default FavoriteTeam;

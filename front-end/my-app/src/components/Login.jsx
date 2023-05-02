@@ -10,7 +10,7 @@ function Login() {
 
   const handleLogin = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:3000/api/sign-in", {
+      const response = await axios.post("http://localhost:3000/sign-in", {
         email,
         password,
       });
@@ -25,7 +25,7 @@ function Login() {
 
   const handleSignup = async ({ username, email, password }) => {
     try {
-      const response = await axios.post("http://localhost:3000/api/sign-up", {
+      const response = await axios.post("http://localhost:3000/sign-up", {
         username,
         email,
         password,
