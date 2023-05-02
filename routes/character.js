@@ -12,5 +12,7 @@ router.delete("/characters/:id", deleteCharacter);
 router.get("/characters/alignment/:align", getByAlignment);
 router.get("/characters/publisher/:pub", getByPublisher);
 router.get('/characters/name/:name', getCharacterByName);
-// router.get('/powerstat', getCharactersByPowerStat);
+
+
+
 export default router;
