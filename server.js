@@ -25,7 +25,7 @@ db.once('open', () => {
 
 
 app.use('/', routes);
-app.post('/api/sign-in', signIn);
+app.post('/sign-in', signIn);
 
 app.listen(port, () => {
  console.log(`Server listening on port ${port}`);
