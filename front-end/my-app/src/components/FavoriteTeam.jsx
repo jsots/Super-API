@@ -8,7 +8,7 @@ function FavoriteTeam(props) {
   const handleRemoveCharacter = (character) => {
     setFavoriteTeam(favoriteTeam.filter((c) => c._id !== character._id));
   };
-
+  
   return (
     <div ref={favoriteTeamRef}>
       <h2>Favorite Team</h2>
