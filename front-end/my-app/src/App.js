@@ -5,6 +5,8 @@ import FavoriteTeam from "../src/components/FavoriteTeam";
 import Search from "../src/components/Search";
 import axios from "axios";
 import "./App.css";
+import Header from "./components/Header";
+import MyNav from "./components/MyNav";
 
 function App() {
  const [characters, setCharacters] = useState([]);
@@ -68,6 +70,8 @@ function App() {
 
 
  return (
+  <div>
+  <Header />
    <Container>
      <h1>Superhero Team Builder</h1>
      <Row>
@@ -107,6 +111,7 @@ function App() {
      </Col>
      </Row>
    </Container>
+   </div>
  );
 }
 
