@@ -3,7 +3,7 @@ import './SignUp.css'
 import { signUp } from '../../services/users'
 import { useNavigate } from 'react-router-dom'
 
-const SignUp = (props) => {
+const SignUp = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
@@ -23,10 +23,8 @@ const SignUp = (props) => {
 
   const onSignUp = async (event) => {
     event.preventDefault()
-    const { setUser } = props
     try {
-      const user = await signUp(form)
-      setUser(user)
+      await signUp(form)
       navigate('/')
     } catch (error) {
       console.error(error)

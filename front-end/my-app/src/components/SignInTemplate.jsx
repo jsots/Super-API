@@ -1,57 +1,95 @@
-import { useState } from 'react'
-import './SignIn.css'
-import { signIn } from '../../services/users'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import './SignIn.css';
+import { signIn } from '../../services/users';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Signup from './SignUp';
 
 const SignIn = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: '',
     password: '',
     isError: false,
     errorMsg: '',
-  })
+  });
 
   const handleChange = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
-    })
-  }
+    });
+  };
 
   const onSignIn = async (event) => {
-    event.preventDefault()
-    const { setUser } = props
+    event.preventDefault();
+    const { setUser } = props;
     try {
-      const user = await signIn(form)
-      setUser(user)
-      navigate('/')
+      const user = await signIn(form);
+      setUser(user);
+      navigate('/');
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setForm({
         isError: true,
         errorMsg: 'Invalid Credentials',
         email: '',
         password: '',
-      })
+      });
     }
-  }
+  };
 
   const renderError = () => {
-    const toggleForm = form.isError ? 'danger' : ''
+    const toggleForm = form.isError ? 'danger' : '';
     if (form.isError) {
       return (
         <button type='submit' className={toggleForm}>
           {form.errorMsg}
         </button>
-      )
+      );
     } else {
-      return <button type='submit'>Sign In</button>
+      return <button type='submit'>Sign In</button>;
     }
-  }
+  };
 
-  const { email, password } = form
+  const { email, password } = form;
+
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await axios.post('http://localhost:3000/sign-in', {
+        email,
+        password,
+      });
+      const data = response.data;
+      console.log(data);
+      props.setUser(data.user);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      setForm({
+        isError: true,
+        errorMsg: 'Invalid Credentials',
+        email: '',
+        password: '',
+      });
+    }
+  };
+
+  const handleSignup = async ({ username, email, password }) => {
+    try {
+      const response = await axios.post('http://localhost:3000/sign-up', {
+        username,
+        email,
+        password,
+      });
+      const data = response.data;
+      console.log(data);
+      handleLogin(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className='form-container'>
@@ -77,8 +115,9 @@ const SignIn = (props) => {
         />
         {renderError()}
       </form>
+      <Signup handleSignup={handleSignup} />
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
