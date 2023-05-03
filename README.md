@@ -28,6 +28,24 @@ Usage
 | /publisher/Marvel     | GET         | Returns a list of characteres with the publisher "Marvel Comics" |
 | /publisher/DC         | GET         | Returns a list of characteres with the publisher "DC Comics"     |
 
+## Authentification Routes:
+| Route                   | HTTP Method | Description                                                     |
+|-------------------------|-------------|-----------------------------------------------------------------|
+| /api/characters         | GET         | Returns a list of all characters                                 |
+| /api/characters/:id     | GET         | Returns a character with the specified ID                       |
+| /api/characters/name/:name | GET      | Returns a character with the specified name                     |
+| /api/characters         | POST        | Creates a new character                                          |
+| /api/characters/:id     | PUT         | Updates a character with the specified ID                       |
+| /api/characters/:id     | DELETE      | Deletes a character with the specified ID                       |
+| /api/characters/alliance/:alliance | GET | Returns a list of characters with the specified alliance      |
+| /api/characters/alliance/good  | GET | Returns a list of characters with the "good" alignment          |
+| /api/characters/alliance/bad   | GET | Returns a list of characters with the "bad" alignment           |
+| /api/characters/alliance/neutral | GET | Returns a list of characters with the "neutral" alignment       |
+| /api/characters/publisher/:publisher | GET | Returns a list of characters with the specified publisher    |
+| /api/characters/publisher/Marvel | GET | Returns a list of characters with the publisher "Marvel Comics" |
+| /api/characters/publisher/DC | GET | Returns a list of characters with the publisher "DC Comics"     |
+
+
 
 ## Models
 * The Character model is defined in models/Character.js, using Mongoose.

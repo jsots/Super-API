@@ -97,4 +97,42 @@ export const oneUser = async (req, res) => {
     }
 }
 
+export const getAllUsernames = async (req, res) => {
+  try {
+    const users = await User.find({}, { username: 1, _id: 0 }); // find all users, only return the username field
+    const usernames = users.map((user) => user.username); // extract the usernames from the returned array of user objects
+    res.status(200).json({ usernames });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const deleteAllUsers = async (req, res) => {
+  try {
+    await User.deleteMany({});
+    res.status(200).json({ message: "All users have been deleted" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const deleteUserByUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOneAndDelete({ username: username });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
 // export const changePassword = async (req, res) => {}
