@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 
 
-let MONGODB_URI = "mongodb+srv://characters:characters@cluster0.xdbncpu.mongodb.net/?retryWrites=true&w=majority";
-
+let MONGODB_URI = "mongodb+srv://characters:<password>@cluster0.xdbncpu.mongodb.net/?retryWrites=true&w=majority"
 
 if (!MONGODB_URI) {
   MONGODB_URI = 'mongodb://localhost:27017/Characters';
