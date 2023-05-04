@@ -61,6 +61,10 @@ Usage
 * chalk
 * node fetch
 
+## Note: 
+* The deployed production link for this API is https://superapiback-end-production.up.railway.app/characters
+
+
 Contributing contributions are welcome! 
 
 Please submit a pull request with your changes.
