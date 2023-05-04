@@ -6,7 +6,7 @@ import connection from '../connection/connection.js';
 import { skipUndefinedProperties } from '../utils/skipUndefinedProperties.js';
 import bcrypt from 'bcrypt';
 
-connection.once("open", async () => {
+connection.once('open', async () => {
   try {
     const characterInstances = charactersData.map((characterData) => {
       const character = new Character(
@@ -23,30 +23,20 @@ connection.once("open", async () => {
 
       return character;
     });
+    await User.deleteMany();
 
-    const usersData = {
-      username: "test",
-      email: "test@gmail.com",
-      password: "test",
-    };
+    const testUser = new User({
+      username: 'testuser',
+      email: 'testuser@gmail.com',
+      password_digest: await bcrypt.hash('testpassword', 11)
+    });
 
-    const hashedPassword = await bcrypt.hash(usersData.password, 10);
+    await testUser.save()
 
-    const userInstance = new User(
-      skipUndefinedProperties({
-        username: usersData.username,
-        email: usersData.email,
-        password_digest: hashedPassword,
-      })
-    );
 
     await Character.deleteMany();
     await Character.create(characterInstances);
 
-    await User.deleteMany();
-    await User.create(userInstance);
-
-    console.log("Characters and user saved successfully!");
   } catch (error) {
     console.error(error);
   } finally {

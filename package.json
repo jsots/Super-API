@@ -10,9 +10,8 @@
     "dev": "nodemon server.js",
     "db:seed": "node seed/data.js",
     "railway:seed": "railway run npm run db:seed"
-    },
-  
-    "keywords": [],
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -26,6 +25,7 @@
     "mongoose": "^7.1.0",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "react-cookie": "^4.1.1"
   }
 }
