@@ -9,9 +9,10 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "db:seed": "node seed/data.js",
-    "railway:seed": "railway run npm run seed"
-  },
-  "keywords": [],
+    "railway:seed": "railway run npm run db:seed"
+    },
+  
+    "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
