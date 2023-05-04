@@ -47,10 +47,9 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
   try {
-    const { email, password } = req.body
-    const user = await User.findOne({ email: email }).select(
-      'username email password_digest'
-    )
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email }).select('username email password_digest');
+
     if (await bcrypt.compare(password, user.password_digest)) {
       const payload = {
         id: user._id,
@@ -58,24 +57,28 @@ export const signIn = async (req, res) => {
         email: user.email,
         exp: parseInt(exp.getTime() / 1000),
       }
-
-      const token = jwt.sign(payload, TOKEN_KEY)
-      res.status(201).json({ token })
+      const token = jwt.sign(payload, TOKEN_KEY);
+      res.status(201).json({ token });
     } else {
-      res.status(401).send('Invalid Credentials')
+      res.status(401).send('Invalid Credentials');
     }
   } catch (error) {
-    console.log(error.message)
-    res.status(500).json({ error: error.message })
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
   }
-}
+};
 
-export const verify = async (req, res) => {
+export const verify = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1]
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.status(401).send('No Authorization header');
+    }
+    const token = authHeader.split(' ')[1];
     const payload = jwt.verify(token, TOKEN_KEY)
     if (payload) {
-      res.json(payload)
+      req.user = payload;
+      next();
     }
   } catch (error) {
     console.log(error.message)
@@ -132,7 +135,15 @@ export const deleteUserByUsername = async (req, res) => {
   }
 };
 
-
+// router.get('/api/favorites/:userId', async (req, res) => {
+//   try {
+//     const favorites = await DreamTeam.find({ userId: req.params.userId });
+//     res.json(dreamTeams);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({message: 'Server error'});
+//   }
+// });
 
 
 // export const changePassword = async (req, res) => {}
