@@ -1,32 +1,23 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import routes from './routes/index.js';
-
+import connection from "./connection/connection.js";
+import routes from "./routes/index.js";
+import express from "express";
+import cors from "cors";
+import logger from "morgan"; 
+import chalk from "chalk";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
-
-mongoose.connect('mongodb://localhost:27017/Characters', {
- useNewUrlParser: true,
- useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
- console.log('Database connected!');
-});
+app.use(logger("dev"));
 
 
 app.use('/', routes);
 
 
-app.listen(port, () => {
- console.log(`Server listening on port ${port}`);
-});
-
+connection.on("connected", () => {
+    console.clear()
+    console.log(chalk.blue("connected to Mongodb"))
+    app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
+})
