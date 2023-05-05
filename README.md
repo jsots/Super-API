@@ -1,6 +1,6 @@
-# character API
+# character/Supers API
 
-*This is a RESTful API that provides data on characters, using Node.js, Express.js, and MongoDB*
+*This is a RESTful API that provides data on Superheroes or Supers as we refer to them, using Node.js, Express.js, and MongoDB*
 
 ## Setup:
 * Install Node.js and MongoDB.
@@ -12,40 +12,34 @@
 Usage
 * To start the server, run npm start or npm run dev
 
-| Route                 | HTTP Method | Description                                                     |
-|-----------------------|-------------|-----------------------------------------------------------------|
-| /                     | GET         | Returns a list of all characters                               |
-| /:id                  | GET         | Returns a character with the specified ID                       |
-| /name/:name           | GET         | Returns a character with the specified name                     |
-| /                     | POST        | Creates a new character                                          |
-| /:id                  | PUT         | Updates a character with the specified ID                       |
-| /:id                  | DELETE      | Deletes a character with the specified ID                       |
-| /alliance/:alliance   | GET         | Returns a list of characteres with the specified alliance       |
-| /alliance/good        | GET         | Returns a list of characteres with the "good" alignment          |
-| /alliance/bad         | GET         | Returns a list of characteres with the "bad" alignment           |
-| /alliance/neutral     | GET         | Returns a list of characteres with the "neutral" alignment       |
-| /publisher/:publisher | GET         | Returns a list of characteres with the specified publisher      |
-| /publisher/Marvel     | GET         | Returns a list of characteres with the publisher "Marvel Comics" |
-| /publisher/DC         | GET         | Returns a list of characteres with the publisher "DC Comics"     |
+| Route                          | HTTP Method | Description                                                |
+| ------------------------------| -----------| -----------------------------------------------------------|
+| /characters               | GET        | Returns all characters.                                    |
+| /characters/:id           | GET        | Returns a character with the specified ID.                |
+| /characters/name/:name    | GET        | Returns a character with the specified name.              |
+| /characters               | POST       | Creates a new character with the given data.              |
+| /characters/:id           | PUT        | Updates the character with the specified ID.              |
+| /characters/:id           | DELETE     | Deletes the character with the specified ID.              |
+| /characters/alignment/:a  | GET        | Returns all characters with the specified alignment.      |
+| /characters/publisher/:p  | GET        | Returns all characters from the specified publisher.      |
 
-## Authentification Routes:
-| Route                   | HTTP Method | Description                                                     |
-|-------------------------|-------------|-----------------------------------------------------------------|
-| /api/characters         | GET         | Returns a list of all characters                                 |
-| /api/characters/:id     | GET         | Returns a character with the specified ID                       |
-| /api/characters/name/:name | GET      | Returns a character with the specified name                     |
-| /api/characters         | POST        | Creates a new character                                          |
-| /api/characters/:id     | PUT         | Updates a character with the specified ID                       |
-| /api/characters/:id     | DELETE      | Deletes a character with the specified ID                       |
-| /api/characters/alliance/:alliance | GET | Returns a list of characters with the specified alliance      |
-| /api/characters/alliance/good  | GET | Returns a list of characters with the "good" alignment          |
-| /api/characters/alliance/bad   | GET | Returns a list of characters with the "bad" alignment           |
-| /api/characters/alliance/neutral | GET | Returns a list of characters with the "neutral" alignment       |
-| /api/characters/publisher/:publisher | GET | Returns a list of characters with the specified publisher    |
-| /api/characters/publisher/Marvel | GET | Returns a list of characters with the publisher "Marvel Comics" |
-| /api/characters/publisher/DC | GET | Returns a list of characters with the publisher "DC Comics"     |
+## Authentication:
+
+The API uses JSON Web Tokens (JWT) to handle user authentication. The following routes are available:
 
 
+| Route                | HTTP Method | Description                                                                   |
+|----------------------|-------------|-------------------------------------------------------------------------------|
+| /api/users/signup    | POST        | Creates a new user with a username, email, and password.                      |
+| /api/users/signin    | POST        | Authenticates a user with an email and password.                               |
+| /api/users/verify    | GET         | Verifies a user's JWT and returns their user information.                      |
+| /api/users/:username | GET         | Returns a user with the specified username.                                    |
+| /api/users/allusernames | GET     | Returns an array of all usernames.                                            |
+| /api/users/deleteall | DELETE      | Deletes all users from the database.                                          |
+| /api/users/:username | DELETE      | Deletes a user with the specified username.                                   |
+I hope this helps!
+
+To authenticate a request, include an Authorization header with the value Bearer [TOKEN], where [TOKEN] is the token provided after a successful sign-in request.
 
 ## Models
 * The Character model is defined in models/Character.js, using Mongoose.
@@ -60,6 +54,8 @@ Usage
 * nodemon
 * chalk
 * node fetch
+* railway 
+* morgan 
 
 Contributing contributions are welcome! 
 
